@@ -20,11 +20,12 @@ abs_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(abs_path)
 sys.path.append(os.path.join(abs_path, "..", "..", "..", "..", "Examples", "Image", "Detection"))
 
-win35_linux34 = pytest.mark.skipif(not ((sys.platform == 'win32' and sys.version_info[:2] == (3,5)) or
-                                        (sys.platform != 'win32' and sys.version_info[:2] == (3,4))),
-                                   reason="it runs currently only in windows-py35 and linux-py34 due to precompiled cython modules")
+win35_linux35_linux36 = pytest.mark.skipif(not ((sys.platform == 'win32' and sys.version_info[:2] == (3,5)) or
+                                                (sys.platform != 'win32' and sys.version_info[:2] == (3,5)) or
+                                                (sys.platform != 'win32' and sys.version_info[:2] == (3,6))),
+                                   reason="it runs currently only in windows-py35, linux-py35 and linux-py36 due to precompiled cython modules")
 
-@win35_linux34
+@win35_linux35_linux36
 def test_detection_demo(device_id):
     if cntk_device(device_id).type() != DeviceKind_GPU:
         pytest.skip('test only runs on GPU')  # it runs very slow in CPU

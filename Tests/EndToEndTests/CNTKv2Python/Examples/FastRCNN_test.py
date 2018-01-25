@@ -31,9 +31,10 @@ create_grocery_mappings(grocery_path)
 win35 = pytest.mark.skipif(not (sys.platform == 'win32' and sys.version_info[:2] == (3,5)),
                            reason="it runs currently only in windows-py35 due to precompiled cython modules")
 # TODO NaN on M60?
-#win35_linux34 = pytest.mark.skipif(not ((sys.platform == 'win32' and sys.version_info[:2] == (3,5)) or
-#                                        (sys.platform != 'win32' and sys.version_info[:2] == (3,4))),
-#                                   reason="it runs currently only in windows-py35 and linux-py34 due to precompiled cython modules")
+#win35_linux35_linux36 = pytest.mark.skipif(not ((sys.platform == 'win32' and sys.version_info[:2] == (3,5)) or
+#                                                (sys.platform != 'win32' and sys.version_info[:2] == (3,5)) or
+#                                                (sys.platform != 'win32' and sys.version_info[:2] == (3,6))),
+#                                   reason="it runs currently only in windows-py35, linux-py35 and linux-py36 due to precompiled cython modules")
 
 @win35
 def test_fastrcnnpy_grocery_training(device_id):
